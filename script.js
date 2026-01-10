@@ -113,10 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('active');
-        
+
         // Hamburger animation
         hamburger.classList.toggle('toggle');
-        
+
         // Link animation
         links.forEach((link, index) => {
             if (link.style.animation) {
@@ -130,10 +130,61 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close menu when link is clicked
     links.forEach(link => {
         link.addEventListener('click', () => {
-             navLinks.classList.remove('active');
-             hamburger.classList.remove('toggle');
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('toggle');
         });
     });
+
+    /* Contact Form Handling */
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('form-status');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerText;
+
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Sending...';
+            formStatus.style.display = 'none';
+            formStatus.className = '';
+
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/api/submit-form', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    formStatus.innerText = result.message || 'Message sent successfully!';
+                    formStatus.style.color = 'green';
+                    formStatus.style.display = 'block';
+                    contactForm.reset();
+                } else {
+                    throw new Error(result.error || 'Failed to send message.');
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                formStatus.innerText = 'An error occurred. Please try again later.';
+                formStatus.style.color = 'red';
+                formStatus.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalBtnText;
+            }
+        });
+    }
 });
 
 /* Additional CSS for animations handled in JS */
