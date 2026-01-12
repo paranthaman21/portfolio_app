@@ -136,6 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* Contact Form Handling */
+    /* Contact Form Handling with Supabase */
+    // Initialize Supabase - REPLACE WITH YOUR ACTUAL URL AND KEY
+    const supabaseUrl = 'https://hsdxjzstsvkrdgpyhlxn.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhzZHhqenN0c3ZrcmRncHlobHhuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyMzIzNzcsImV4cCI6MjA4MzgwODM3N30.ATh3GZA5jbAQVMUN3rvPvOiI1fCeO_smPquXN8VaIPs';
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('form-status');
 
@@ -156,24 +162,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = Object.fromEntries(formData.entries());
 
             try {
-                const response = await fetch('/api/submit-form', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
+                // Submit to Supabase
+                const { error } = await supabase
+                    .from('contacts')
+                    .insert([
+                        {
+                            name: data.name,
+                            email: data.email,
+                            message: data.message
+                        }
+                    ]);
 
-                const result = await response.json();
+                if (error) throw error;
 
-                if (response.ok) {
-                    formStatus.innerText = result.message || 'Message sent successfully!';
-                    formStatus.style.color = 'green';
-                    formStatus.style.display = 'block';
-                    contactForm.reset();
-                } else {
-                    throw new Error(result.error || 'Failed to send message.');
-                }
+                formStatus.innerText = 'Message sent successfully!';
+                formStatus.style.color = 'green';
+                formStatus.style.display = 'block';
+                contactForm.reset();
             } catch (error) {
                 console.error('Error submitting form:', error);
                 formStatus.innerText = 'An error occurred. Please try again later.';
