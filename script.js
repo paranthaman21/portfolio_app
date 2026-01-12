@@ -138,9 +138,22 @@ document.addEventListener('DOMContentLoaded', () => {
     /* Contact Form Handling */
     /* Contact Form Handling with Supabase */
     // Initialize Supabase - REPLACE WITH YOUR ACTUAL URL AND KEY
+    // Initialize Supabase
     const supabaseUrl = 'https://hsdxjzstsvkrdgpyhlxn.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhzZHhqenN0c3ZrcmRncHlobHhuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjgyMzIzNzcsImV4cCI6MjA4MzgwODM3N30.ATh3GZA5jbAQVMUN3rvPvOiI1fCeO_smPquXN8VaIPs';
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+    // Check if the global supabase object exists
+    if (typeof supabase === 'undefined') {
+        console.error('Supabase client library not loaded!');
+        const formStatus = document.getElementById('form-status');
+        if (formStatus) {
+            formStatus.innerText = 'Error: Supabase library not loaded. Check your internet connection.';
+            formStatus.style.color = 'red';
+            formStatus.style.display = 'block';
+        }
+    }
+
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('form-status');
@@ -163,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // Submit to Supabase
-                const { error } = await supabase
+                const { error } = await supabaseClient
                     .from('contacts')
                     .insert([
                         {
@@ -181,7 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 contactForm.reset();
             } catch (error) {
                 console.error('Error submitting form:', error);
-                formStatus.innerText = 'An error occurred. Please try again later.';
+                // Show the actual error message to help functionality debugging
+                formStatus.innerText = 'Error: ' + (error.message || 'An error occurred.');
                 formStatus.style.color = 'red';
                 formStatus.style.display = 'block';
             } finally {
