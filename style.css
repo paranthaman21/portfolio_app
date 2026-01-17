@@ -492,13 +492,14 @@ ul {
 .overlay a {
     color: #fff;
     background: var(--primary-color);
-    padding: 8px 15px;
+    padding: 8px 30px;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 600;
+    transition: 0.3s;
 }
 
-.project-content {
+.project-content {  
     padding: 25px;
 }
 
