@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Resume of Paranthaman V — Aspiring Full-Stack / Frontend / Backend Developer Intern. BCA student at Hindustan College of Arts & Science, Chennai.">
+    <title>Paranthaman V — Resume</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ─── TOKENS ─── */
+        :root {
+            --cream:       #f6ecd9;
+            --cream-alt:   #ede0c8;
+            --cream-card:  #fdf6ec;
+            --brown-dark:  #1a0f08;
+            --brown-mid:   #3d2b1f;
+            --brown-light: #7a6a5a;
+            --brown-muted: #a89380;
+            --pink:        #e91e8c;
+            --pink-light:  rgba(233,30,140,0.10);
+            --indigo:      #4f46e5;
+            --teal:        #0d9488;
+            --orange:      #f97316;
+            --yellow:      #f5e03e;
+            --font-h: 'Montserrat', sans-serif;
+            --font-b: 'Open Sans', sans-serif;
+        }
+
+        /* ─── RESET ─── */
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { font-size: 16px; }
+        body {
+            background: var(--cream);
+            color: var(--brown-mid);
+            font-family: var(--font-b);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* ─── TOP BAR (screen only) ─── */
+        .topbar {
+            background: var(--brown-dark);
+            padding: 14px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .topbar-left { display: flex; align-items: center; gap: 20px; }
+        .topbar-logo {
+            font-family: var(--font-h);
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: var(--pink);
+        }
+        .topbar a.back-link {
+            font-family: var(--font-h);
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--brown-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: 0.03em;
+            transition: color 0.2s;
+        }
+        .topbar a.back-link:hover { color: #fff; }
+        .topbar-actions { display: flex; gap: 10px; align-items: center; }
+
+        .btn-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 20px;
+            border-radius: 999px;
+            font-family: var(--font-h);
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.25s;
+            border: none;
+        }
+        .btn-print {
+            background: var(--pink);
+            color: #fff;
+            box-shadow: 0 3px 12px rgba(233,30,140,0.3);
+        }
+        .btn-print:hover { background: #c4166e; transform: translateY(-1px); }
+        .btn-pdf {
+            background: transparent;
+            border: 1.5px solid var(--brown-muted);
+            color: var(--brown-muted);
+        }
+        .btn-pdf:hover { border-color: #fff; color: #fff; }
+
+        /* ─── PAGE WRAPPER ─── */
+        .resume-page {
+            max-width: 880px;
+            margin: 40px auto 60px;
+            padding: 0 24px;
+        }
+
+        /* ─── HEADER ─── */
+        .resume-header {
+            background: var(--cream-card);
+            border: 1px solid var(--cream-alt);
+            border-radius: 20px;
+            padding: 40px 44px;
+            margin-bottom: 28px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 24px;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(61,43,31,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        .resume-header::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 5px;
+            background: linear-gradient(to bottom, var(--pink), rgba(233,30,140,0.2));
+            border-radius: 20px 0 0 20px;
+        }
+        .resume-name {
+            font-family: var(--font-h);
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 900;
+            color: var(--brown-dark);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 6px;
+        }
+        .resume-role {
+            font-family: var(--font-h);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--pink);
+            letter-spacing: 0.03em;
+            margin-bottom: 18px;
+        }
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+        .contact-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.84rem;
+            color: var(--brown-light);
+            transition: color 0.2s;
+        }
+        .contact-chip:hover { color: var(--pink); }
+        .contact-chip i { color: var(--pink); font-size: 0.85rem; }
+        .header-badge-col {
+            text-align: right;
+        }
+        .avail-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(13,148,136,0.1);
+            border: 2px solid rgba(13,148,136,0.3);
+            color: #0f766e;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-family: var(--font-h);
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+        .avail-dot {
+            width: 8px; height: 8px;
+            background: #0d9488;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        /* ─── GRID LAYOUT ─── */
+        .resume-body {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 24px;
+            align-items: start;
+        }
+
+        /* ─── SECTION BLOCK ─── */
+        .res-section {
+            background: var(--cream-card);
+            border: 1px solid var(--cream-alt);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 22px;
+            box-shadow: 0 2px 10px rgba(61,43,31,0.06);
+        }
+
+        .res-section-title {
+            font-family: var(--font-h);
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--pink);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .res-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1.5px;
+            background: var(--cream-alt);
+            border-radius: 1px;
+        }
+
+        /* ─── OBJECTIVE ─── */
+        .objective-text {
+            font-size: 0.93rem;
+            color: var(--brown-light);
+            line-height: 1.75;
+        }
+        .objective-text strong { color: var(--brown-mid); }
+
+        /* ─── PROJECTS ─── */
+        .project-entry {
+            margin-bottom: 22px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--cream-alt);
+        }
+        .project-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+        .project-title {
+            font-family: var(--font-h);
+            font-size: 0.98rem;
+            font-weight: 800;
+            color: var(--brown-dark);
+            letter-spacing: -0.01em;
+        }
+        .project-type-label {
+            font-family: var(--font-h);
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--pink);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+        }
+        .project-desc {
+            font-size: 0.86rem;
+            color: var(--brown-light);
+            line-height: 1.65;
+            margin-bottom: 10px;
+        }
+        .project-bullets {
+            list-style: none;
+            margin-bottom: 12px;
+        }
+        .project-bullets li {
+            font-size: 0.85rem;
+            color: var(--brown-light);
+            line-height: 1.6;
+            padding-left: 16px;
+            position: relative;
+            margin-bottom: 4px;
+        }
+        .project-bullets li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--pink);
+            font-size: 0.7rem;
+            top: 3px;
+        }
+        .project-links-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-family: var(--font-h);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            padding: 5px 12px;
+            border-radius: 999px;
+            border: 1.5px solid var(--cream-alt);
+            color: var(--brown-light);
+            transition: all 0.2s;
+        }
+        .project-link:hover { border-color: var(--pink); color: var(--pink); }
+        .project-link i { font-size: 0.7rem; }
+
+        /* ─── TECH TAGS ─── */
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-family: var(--font-h);
+            font-size: 0.68rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 999px;
+            letter-spacing: 0.02em;
+        }
+        .tag-indigo { background: rgba(79,70,229,0.1);  color: var(--indigo); border: 1.5px solid rgba(79,70,229,0.2); }
+        .tag-pink   { background: var(--pink-light);    color: var(--pink);   border: 1.5px solid rgba(233,30,140,0.2); }
+        .tag-teal   { background: rgba(13,148,136,0.1); color: var(--teal);   border: 1.5px solid rgba(13,148,136,0.2); }
+        .tag-orange { background: rgba(249,115,22,0.1); color: var(--orange); border: 1.5px solid rgba(249,115,22,0.2); }
+        .tag-dark   { background: rgba(26,15,8,0.07);   color: var(--brown-dark); border: 1.5px solid rgba(26,15,8,0.12); }
+
+        /* ─── SIDEBAR ─── */
+        .sidebar .res-section { margin-bottom: 20px; }
+
+        /* SKILLS */
+        .skill-category-name {
+            font-family: var(--font-h);
+            font-size: 0.73rem;
+            font-weight: 800;
+            color: var(--brown-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            margin-bottom: 8px;
+            margin-top: 14px;
+        }
+        .skill-category-name:first-child { margin-top: 0; }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        /* EDUCATION */
+        .edu-degree {
+            font-family: var(--font-h);
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--brown-dark);
+            margin-bottom: 2px;
+        }
+        .edu-school {
+            font-size: 0.85rem;
+            color: var(--brown-mid);
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .edu-meta {
+            font-size: 0.8rem;
+            color: var(--brown-muted);
+        }
+        .edu-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+            background: var(--pink-light);
+            border: 1.5px solid rgba(233,30,140,0.2);
+            color: var(--pink);
+            padding: 5px 12px;
+            border-radius: 999px;
+            font-family: var(--font-h);
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+
+        /* CERTIFICATIONS */
+        .cert-entry {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin-bottom: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--cream-alt);
+        }
+        .cert-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .cert-dot {
+            width: 8px; height: 8px;
+            background: var(--pink);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+        .cert-name {
+            font-family: var(--font-h);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--brown-dark);
+            margin-bottom: 2px;
+        }
+        .cert-issuer {
+            font-size: 0.76rem;
+            color: var(--brown-muted);
+        }
+
+        /* ACHIEVEMENTS */
+        .achievement-entry {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            margin-bottom: 14px;
+        }
+        .achievement-entry:last-child { margin-bottom: 0; }
+        .ach-icon {
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .ach-title {
+            font-family: var(--font-h);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--brown-dark);
+            margin-bottom: 2px;
+        }
+        .ach-sub {
+            font-size: 0.76rem;
+            color: var(--brown-muted);
+        }
+
+        /* PROFILE LINKS */
+        .profile-link-entry {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--cream-alt);
+            font-size: 0.84rem;
+            color: var(--brown-mid);
+            transition: color 0.2s;
+        }
+        .profile-link-entry:last-child { border-bottom: none; }
+        .profile-link-entry:hover { color: var(--pink); }
+        .profile-link-entry i {
+            width: 20px;
+            text-align: center;
+            color: var(--pink);
+            font-size: 0.9rem;
+        }
+        .profile-link-entry span { font-size: 0.78rem; color: var(--brown-muted); }
+
+        /* ─── PRINT STYLES ─── */
+        @media print {
+            .topbar { display: none !important; }
+            body { background: #fff; }
+            .resume-page { margin: 0; padding: 16px; max-width: 100%; }
+            .resume-header, .res-section {
+                box-shadow: none;
+                border-color: #ddd;
+            }
+            .res-section { break-inside: avoid; }
+            .project-entry { break-inside: avoid; }
+            a { color: inherit; }
+            @page { margin: 1.5cm; }
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 720px) {
+            .resume-body {
+                grid-template-columns: 1fr;
+            }
+            .resume-header {
+                grid-template-columns: 1fr;
+                padding: 28px 24px;
+            }
+            .header-badge-col { text-align: left; }
+            .res-section { padding: 22px 20px; }
+            .contact-row { gap: 10px; }
+        }
+
+        @media (max-width: 480px) {
+            .topbar { padding: 12px 16px; }
+            .resume-page { padding: 0 12px; margin: 16px auto 40px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ─── TOP ACTION BAR ─── -->
+    <div class="topbar">
+        <div class="topbar-left">
+            <span class="topbar-logo">PV.</span>
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> Back to Portfolio
+            </a>
+        </div>
+        <div class="topbar-actions">
+            <a href="Paranthaman_V_Intern_Resume.pdf" download class="btn-top btn-pdf" id="downloadPdf">
+                <i class="fas fa-download" aria-hidden="true"></i> Download PDF
+            </a>
+            <button class="btn-top btn-print" onclick="window.print()" id="printResume">
+                <i class="fas fa-print" aria-hidden="true"></i> Print / Save PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- ─── RESUME PAGE ─── -->
+    <main class="resume-page" role="main">
+
+        <!-- HEADER -->
+        <header class="resume-header">
+            <div>
+                <h1 class="resume-name">Paranthaman V</h1>
+                <p class="resume-role">Full-Stack / Frontend / Backend Developer Intern</p>
+                <div class="contact-row">
+                    <a href="mailto:paranthaman2107@gmail.com" class="contact-chip" id="resume-email">
+                        <i class="fas fa-envelope" aria-hidden="true"></i> paranthaman2107@gmail.com
+                    </a>
+                    <a href="https://github.com/paranthaman21" target="_blank" rel="noopener" class="contact-chip" id="resume-github">
+                        <i class="fab fa-github" aria-hidden="true"></i> paranthaman21
+                    </a>
+                    <a href="https://www.linkedin.com/in/paranthaman-venkatesan-dev" target="_blank" rel="noopener" class="contact-chip" id="resume-linkedin">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i> paranthaman-venkatesan-dev
+                    </a>
+                    <span class="contact-chip">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i> Chennai, Tamil Nadu, India
+                    </span>
+                </div>
+            </div>
+            <div class="header-badge-col">
+                <span class="avail-badge">
+                    <span class="avail-dot"></span>
+                    Open to Internships
+                </span>
+            </div>
+        </header>
+
+        <!-- BODY GRID: main + sidebar -->
+        <div class="resume-body">
+
+            <!-- ══════════ MAIN COLUMN ══════════ -->
+            <div class="main-col">
+
+                <!-- OBJECTIVE -->
+                <section class="res-section" aria-labelledby="obj-title">
+                    <h2 class="res-section-title" id="obj-title">
+                        <i class="fas fa-bullseye" aria-hidden="true"></i> Objective
+                    </h2>
+                    <p class="objective-text">
+                        Final-year <strong>BCA student</strong> at Hindustan College of Arts &amp; Science, Chennai (graduating 2027), seeking a <strong>Full-Stack / Frontend / Backend Developer Intern</strong> role. Experienced in building REST APIs, React applications, and SQL-backed systems using <strong>Node.js, Express, React, JWT auth, and PostgreSQL</strong>. Eager to contribute to a fast-moving team, ship real product, and grow in a professional engineering environment.
+                    </p>
+                </section>
+
+                <!-- PROJECTS -->
+                <section class="res-section" aria-labelledby="proj-title">
+                    <h2 class="res-section-title" id="proj-title">
+                        <i class="fas fa-code" aria-hidden="true"></i> Projects
+                    </h2>
+
+                    <!-- ConnectHub -->
+                    <div class="project-entry">
+                        <div class="project-header">
+                            <span class="project-title">ConnectHub</span>
+                            <span class="project-type-label">Social Media REST API</span>
+                        </div>
+                        <ul class="project-bullets">
+                            <li>Built an 11-endpoint REST API with a 5-table relational schema using <strong>Node.js, Express.js, and SQLite</strong>.</li>
+                            <li>Implemented <strong>JWT-based authentication</strong> for protected routes and <strong>bcrypt</strong> for secure password hashing.</li>
+                            <li>Documented all endpoints with <strong>Swagger / OpenAPI</strong> — live docs deployed on Render.</li>
+                            <li>Covers user registration/login, posts, follows, likes, and comment flows.</li>
+                        </ul>
+                        <div class="tag-row">
+                            <span class="tag tag-indigo">Node.js</span>
+                            <span class="tag tag-dark">Express.js</span>
+                            <span class="tag tag-teal">SQLite</span>
+                            <span class="tag tag-dark">JWT</span>
+                            <span class="tag tag-orange">bcrypt</span>
+                            <span class="tag tag-teal">Swagger</span>
+                            <span class="tag tag-teal">Render</span>
+                        </div>
+                        <div class="project-links-row">
+                            <a href="https://github.com/paranthaman21/social-connect-REST_API" target="_blank" rel="noopener" class="project-link" id="res-connecthub-gh">
+                                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+                            </a>
+                            <a href="https://connecthub-api-sw0z.onrender.com/api-docs/" target="_blank" rel="noopener" class="project-link" id="res-connecthub-live">
+                                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Swagger Docs
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Nxt Trendz -->
+                    <div class="project-entry">
+                        <div class="project-header">
+                            <span class="project-title">Nxt Trendz</span>
+                            <span class="project-type-label">React E-Commerce App</span>
+                        </div>
+                        <ul class="project-bullets">
+                            <li>Full-featured e-commerce frontend with <strong>React.js, React Router, and Bootstrap</strong>.</li>
+                            <li>JWT-based login / logout flow with token persistence and protected route guards.</li>
+                            <li>Product listings with filtering, cart management, and responsive layout.</li>
+                            <li>Integrated <strong>REST APIs</strong> for dynamic product and user data. Deployed on Vercel.</li>
+                        </ul>
+                        <div class="tag-row">
+                            <span class="tag tag-pink">React.js</span>
+                            <span class="tag tag-pink">React Router</span>
+                            <span class="tag tag-dark">JWT</span>
+                            <span class="tag tag-indigo">Bootstrap</span>
+                            <span class="tag tag-orange">REST APIs</span>
+                            <span class="tag tag-teal">Vercel</span>
+                        </div>
+                        <div class="project-links-row">
+                            <a href="https://github.com/paranthaman21/nxtE-Commerce" target="_blank" rel="noopener" class="project-link" id="res-nxt-gh">
+                                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+                            </a>
+                            <a href="https://nxtecommerce.vercel.app/" target="_blank" rel="noopener" class="project-link" id="res-nxt-live">
+                                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Repo Scout -->
+                    <div class="project-entry">
+                        <div class="project-header">
+                            <span class="project-title">Repo Scout</span>
+                            <span class="project-type-label">GitHub Repository Explorer</span>
+                        </div>
+                        <ul class="project-bullets">
+                            <li>React app to search and explore any GitHub user's repositories via the <strong>GitHub REST API</strong>.</li>
+                            <li>Live search filtering with real-time API calls and clean responsive card layout.</li>
+                            <li>Wrote unit tests with <strong>React Testing Library (RTL)</strong> for key UI components.</li>
+                            <li>Deployed on Vercel with automated preview deployments on each push.</li>
+                        </ul>
+                        <div class="tag-row">
+                            <span class="tag tag-pink">React.js</span>
+                            <span class="tag tag-dark">GitHub API</span>
+                            <span class="tag tag-orange">RTL / Jest</span>
+                            <span class="tag tag-teal">Vercel</span>
+                        </div>
+                        <div class="project-links-row">
+                            <a href="https://github.com/paranthaman21/github-repo-list-react" target="_blank" rel="noopener" class="project-link" id="res-repo-gh">
+                                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+                            </a>
+                            <a href="https://github-repo-list-react.vercel.app/" target="_blank" rel="noopener" class="project-link" id="res-repo-live">
+                                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div><!-- /main-col -->
+
+            <!-- ══════════ SIDEBAR ══════════ -->
+            <aside class="sidebar" aria-label="Sidebar information">
+
+                <!-- EDUCATION -->
+                <section class="res-section" aria-labelledby="edu-title">
+                    <h2 class="res-section-title" id="edu-title">
+                        <i class="fas fa-graduation-cap" aria-hidden="true"></i> Education
+                    </h2>
+                    <p class="edu-degree">Bachelor of Computer Applications</p>
+                    <p class="edu-school">Hindustan College of Arts &amp; Science</p>
+                    <p class="edu-meta">Chennai, Tamil Nadu &nbsp;·&nbsp; 2024 – 2027</p>
+                    <span class="edu-badge"><i class="fas fa-star" aria-hidden="true"></i> Graduating 2027</span>
+                </section>
+
+                <!-- SKILLS -->
+                <section class="res-section" aria-labelledby="skills-title">
+                    <h2 class="res-section-title" id="skills-title">
+                        <i class="fas fa-layer-group" aria-hidden="true"></i> Skills
+                    </h2>
+
+                    <p class="skill-category-name">Frontend</p>
+                    <div class="skill-tags">
+                        <span class="tag tag-pink">React.js</span>
+                        <span class="tag tag-dark">JavaScript ES6+</span>
+                        <span class="tag tag-orange">HTML5</span>
+                        <span class="tag tag-indigo">CSS3</span>
+                        <span class="tag tag-indigo">Bootstrap</span>
+                        <span class="tag tag-pink">React Router</span>
+                    </div>
+
+                    <p class="skill-category-name">Backend</p>
+                    <div class="skill-tags">
+                        <span class="tag tag-indigo">Node.js</span>
+                        <span class="tag tag-dark">Express.js</span>
+                        <span class="tag tag-teal">PostgreSQL</span>
+                        <span class="tag tag-teal">SQLite</span>
+                        <span class="tag tag-dark">JWT Auth</span>
+                        <span class="tag tag-orange">bcrypt</span>
+                        <span class="tag tag-orange">REST APIs</span>
+                    </div>
+
+                    <p class="skill-category-name">Tools</p>
+                    <div class="skill-tags">
+                        <span class="tag tag-orange">Git / GitHub</span>
+                        <span class="tag tag-dark">Postman</span>
+                        <span class="tag tag-dark">Swagger / OpenAPI</span>
+                        <span class="tag tag-teal">Render</span>
+                        <span class="tag tag-indigo">Vercel</span>
+                        <span class="tag tag-dark">SQL</span>
+                    </div>
+                </section>
+
+                <!-- CERTIFICATIONS -->
+                <section class="res-section" aria-labelledby="cert-title">
+                    <h2 class="res-section-title" id="cert-title">
+                        <i class="fas fa-certificate" aria-hidden="true"></i> Certifications
+                    </h2>
+
+                    <div class="cert-entry">
+                        <div class="cert-dot"></div>
+                        <div>
+                            <p class="cert-name">NxtWave CCBP 4.0 Fellow</p>
+                            <p class="cert-issuer">NxtWave</p>
+                        </div>
+                    </div>
+                    <div class="cert-entry">
+                        <div class="cert-dot"></div>
+                        <div>
+                            <p class="cert-name">Node.js &amp; Express.js</p>
+                            <p class="cert-issuer">NxtWave</p>
+                        </div>
+                    </div>
+                    <div class="cert-entry">
+                        <div class="cert-dot"></div>
+                        <div>
+                            <p class="cert-name">Web Dev Fundamentals</p>
+                            <p class="cert-issuer">IBM SkillsBuild</p>
+                        </div>
+                    </div>
+                    <div class="cert-entry">
+                        <div class="cert-dot"></div>
+                        <div>
+                            <p class="cert-name">Bootstrap &amp; Flexbox</p>
+                            <p class="cert-issuer">NxtWave</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ACHIEVEMENTS -->
+                <section class="res-section" aria-labelledby="ach-title">
+                    <h2 class="res-section-title" id="ach-title">
+                        <i class="fas fa-trophy" aria-hidden="true"></i> Achievements
+                    </h2>
+
+                    <div class="achievement-entry">
+                        <span class="ach-icon">🥇</span>
+                        <div>
+                            <p class="ach-title">1st Prize — BRAIN-CODE 2026</p>
+                            <p class="ach-sub">Competitive coding event</p>
+                        </div>
+                    </div>
+                    <div class="achievement-entry">
+                        <span class="ach-icon">🥇</span>
+                        <div>
+                            <p class="ach-title">1st Place — Paper Presentation</p>
+                            <p class="ach-sub">Technical paper presentation</p>
+                        </div>
+                    </div>
+                    <div class="achievement-entry">
+                        <span class="ach-icon">🥇</span>
+                        <div>
+                            <p class="ach-title">1st Place — Technical Quiz</p>
+                            <p class="ach-sub">College-level tech quiz</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PROFILES -->
+                <section class="res-section" aria-labelledby="profiles-title">
+                    <h2 class="res-section-title" id="profiles-title">
+                        <i class="fas fa-link" aria-hidden="true"></i> Profiles
+                    </h2>
+                    <a href="https://github.com/paranthaman21" target="_blank" rel="noopener" class="profile-link-entry" id="res-profile-github">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                        <div>
+                            <div>GitHub</div>
+                            <span>paranthaman21</span>
+                        </div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/paranthaman-venkatesan-dev" target="_blank" rel="noopener" class="profile-link-entry" id="res-profile-linkedin">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                        <div>
+                            <div>LinkedIn</div>
+                            <span>paranthaman-venkatesan-dev</span>
+                        </div>
+                    </a>
+                    <a href="https://connecthub-api-sw0z.onrender.com/api-docs/" target="_blank" rel="noopener" class="profile-link-entry" id="res-profile-swagger">
+                        <i class="fas fa-book-open" aria-hidden="true"></i>
+                        <div>
+                            <div>Swagger Docs</div>
+                            <span>ConnectHub API</span>
+                        </div>
+                    </a>
+                </section>
+
+            </aside><!-- /sidebar -->
+
+        </div><!-- /resume-body -->
+
+    </main>
+
+</body>
+</html>
