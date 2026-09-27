@@ -18,13 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ─────────────────────────────────────────
        1. EMAIL JS INIT
     ───────────────────────────────────────── */
-    const cfg = window.EMAILJS_CONFIG;
+    const emailConfig = {
+        publicKey: "7av7b7PCjwMqfR-W7",
+        serviceId: "service_e0ejijj",
+        templateId: "template_51qwl25"
+    };
 
-    if (cfg && cfg.publicKey) {
-        emailjs.init({ publicKey: cfg.publicKey });
-    } else {
-        console.warn('[Portfolio] EmailJS config not found. Make sure config.js is present. See config.example.js.');
-    }
+    emailjs.init({ publicKey: emailConfig.publicKey });
 
 
     /* ─────────────────────────────────────────
@@ -152,8 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const config = window.EMAILJS_CONFIG;
-        if (!config) {
+        const config = emailConfig;
+        if (!config || !config.publicKey) {
             showStatus('error', '⚠️ Configuration error. Email me directly: paranthaman2107@gmail.com');
             return;
         }
